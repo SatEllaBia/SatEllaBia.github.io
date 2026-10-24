@@ -1,0 +1,25 @@
+# Site settings. GitHub Pages builds this with Jekyll on every push to main.
+title: SatEllaBia
+description: Study notes on analog electronics.
+tagline: Notes on circuits, kept where I can find them again.
+url: https://satellabia.github.io
+github: SatEllaBia
+
+# Each file in _notes/ becomes a page at /notes/<file-name>/
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+defaults:
+  - scope: { path: "", type: notes }
+    values: { layout: note }
+
+future: true          # show notes even if their date is ahead of the server clock
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax   # emits \( \) and \[ \]; KaTeX renders them in the browser
+
+exclude: [README.md, NOTE_TEMPLATE.md, Gemfile, Gemfile.lock, LICENSE]

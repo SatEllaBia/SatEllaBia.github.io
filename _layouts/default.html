@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.summary | default: site.description | strip_html | escape }}">
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  {% if page.layout == "note" %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.querySelector('.prose'))"></script>
+  {% endif %}
+</head>
+<body>
+  <nav class="nav mono">
+    <a class="home keep-case" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <ul>
+      <li><a href="{{ '/notes/' | relative_url }}" data-decode>Notes</a></li>
+      <li><a href="https://github.com/{{ site.github }}" data-decode>GitHub</a></li>
+    </ul>
+  </nav>
+
+  {{ content }}
+
+  <footer class="foot wrap">
+    <p class="big"><a class="glitch keep-case" data-glitch="{{ site.title }}" href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
+    <div class="cols mono">
+      <span>{{ site.description }}</span>
+      <span class="links">
+        <a href="{{ '/notes/' | relative_url }}">All notes</a>
+        <a href="https://github.com/{{ site.github }}/{{ site.github }}.github.io">Source</a>
+        <span>Glitch style inspired by <a class="green" href="https://skinkebravia.github.io">SkinkEBravia</a></span>
+      </span>
+    </div>
+  </footer>
+
+  <script src="{{ '/assets/site.js' | relative_url }}" defer></script>
+</body>
+</html>

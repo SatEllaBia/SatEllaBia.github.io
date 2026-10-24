@@ -1,0 +1,16 @@
+{%- comment -%} Rows for a list of notes. Pass notes=..., numbered by date order. {%- endcomment -%}
+{%- assign by_date = site.notes | sort: "date" -%}
+<ul class="rows">
+  {%- for n in include.notes -%}
+  {%- for m in by_date -%}{%- if m.url == n.url -%}{%- assign num = forloop.index -%}{%- endif -%}{%- endfor -%}
+  <li class="row" data-reveal>
+    <a href="{{ n.url | relative_url }}">
+      <span class="mono">{% if num < 10 %}0{% endif %}{{ num }}</span>
+      <span class="t" data-decode>{{ n.title }}</span>
+      <span class="mono tag">{{ n.subject | default: "Note" }}</span>
+      <span class="mono when">{{ n.date | date: "%Y.%m" }}</span>
+      <span class="mono go">↗</span>
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>

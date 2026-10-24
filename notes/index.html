@@ -1,0 +1,17 @@
+---
+layout: default
+title: Notes
+---
+<main class="article wrap">
+  <header>
+    <p class="mono"><b>{{ site.notes | size }}</b> notes</p>
+    <h1><span class="glitch" data-glitch="Notes">Notes</span></h1>
+  </header>
+  {% assign groups = site.notes | sort: "date" | reverse | group_by: "subject" %}
+  {% for g in groups %}
+  <section class="block" style="padding-top:48px">
+    <div class="head sub"><span class="mono">({% if forloop.index < 10 %}0{% endif %}{{ forloop.index }})</span><h2>{{ g.name | default: "Other" }}</h2></div>
+    {% include note-rows.html notes=g.items %}
+  </section>
+  {% endfor %}
+</main>
