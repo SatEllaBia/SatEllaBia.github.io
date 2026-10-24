@@ -1,0 +1,14 @@
+{%- include lang.html -%}
+<main class="article wrap">
+  <header>
+    <p class="mono"><b>{{ lnotes | size }}</b> {{ t.notes_count }}</p>
+    <h1><span class="glitch" data-glitch="{{ t.notes_title }}">{{ t.notes_title }}</span></h1>
+  </header>
+  {% assign groups = lnotes | sort: "date" | reverse | group_by: "subject" %}
+  {% for g in groups %}
+  <section class="block" style="padding-top:48px">
+    <div class="head sub"><span class="mono">({% if forloop.index < 10 %}0{% endif %}{{ forloop.index }})</span><h2>{{ g.name | default: t.other }}</h2></div>
+    {% include note-rows.html notes=g.items %}
+  </section>
+  {% endfor %}
+</main>

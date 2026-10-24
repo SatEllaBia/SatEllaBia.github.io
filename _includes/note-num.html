@@ -1,0 +1,4 @@
+{%- comment -%} Prints a note's number: its position by date among default-language notes. {%- endcomment -%}
+{%- assign num = "" -%}
+{%- for b in basesorted -%}{%- if b.slug == include.note.slug -%}{%- assign num = forloop.index -%}{%- endif -%}{%- endfor -%}
+{%- if num == "" -%}—{%- elsif num < 10 -%}0{{ num }}{%- else -%}{{ num }}{%- endif -%}

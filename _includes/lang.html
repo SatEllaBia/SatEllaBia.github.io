@@ -1,0 +1,25 @@
+{%- comment -%}
+  Sets, for the current page's language:
+  t       interface text from _data/i18n.yml
+  home    this language's root URL ("/" or "/ja/")
+  lnotes  the notes to list: translations where they exist, otherwise the default-language note
+{%- endcomment -%}
+{%- assign deflang = site.languages.first -%}
+{%- assign lang = page.lang | default: deflang -%}
+{%- assign t = site.data.i18n[lang] -%}
+{%- if lang == deflang -%}{%- assign home = "/" -%}{%- else -%}{%- assign home = "/" | append: lang | append: "/" -%}{%- endif -%}
+{%- assign basenotes = site.notes | where: "lang", deflang -%}
+{%- assign localnotes = site.notes | where: "lang", lang -%}
+{%- assign lnotes = "" | split: "" -%}
+{%- for n in basenotes -%}
+  {%- assign pick = n -%}
+  {%- for m in localnotes -%}{%- if m.slug == n.slug -%}{%- assign pick = m -%}{%- endif -%}{%- endfor -%}
+  {%- assign lnotes = lnotes | push: pick -%}
+{%- endfor -%}
+{%- if lang != deflang -%}
+  {%- for m in localnotes -%}
+    {%- assign has_base = basenotes | where: "slug", m.slug | size -%}
+    {%- if has_base == 0 -%}{%- assign lnotes = lnotes | push: m -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign basesorted = basenotes | sort: "date" -%}

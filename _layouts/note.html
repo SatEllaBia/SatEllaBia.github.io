@@ -1,17 +1,16 @@
 ---
 layout: default
 ---
-{%- assign sorted = site.notes | sort: "date" -%}
-{%- for n in sorted -%}{%- if n.url == page.url -%}{%- assign num = forloop.index -%}{%- endif -%}{%- endfor -%}
+{%- include lang.html -%}
 <main class="article wrap">
   <header>
     <p class="mono">
-      <b>{% if num < 10 %}0{% endif %}{{ num }}</b> · {{ page.subject | default: "Note" }}
+      <b>{% include note-num.html note=page %}</b> · {{ page.subject | default: t.note }}
       {% if page.date %}· {{ page.date | date: "%Y.%m.%d" }}{% endif %}
     </p>
     <h1><span class="glitch" data-glitch="{{ page.title | escape }}">{{ page.title }}</span></h1>
     {% if page.summary %}<p class="kicker">{{ page.summary }}</p>{% endif %}
-    {% if page.anki %}<p><a class="btn" href="{{ page.anki | relative_url }}" download>Anki deck ↓</a></p>{% endif %}
+    {% if page.anki %}<p><a class="btn" href="{{ page.anki | relative_url }}" download>{{ t.anki }}</a></p>{% endif %}
   </header>
   <article class="prose">
     {{ content }}

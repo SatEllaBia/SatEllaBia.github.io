@@ -1,19 +1,29 @@
 # Site settings. GitHub Pages builds this with Jekyll on every push to main.
 title: SatEllaBia
-description: Study notes on analog electronics.
-tagline: Notes on circuits, kept where I can find them again.
 url: https://satellabia.github.io
 github: SatEllaBia
 
-# Each file in _notes/ becomes a page at /notes/<file-name>/
+# Languages. The first one is the default and lives at the site root;
+# every other language lives under /<code>/. Interface text is in _data/i18n.yml.
+languages: [en, ja]
+
+# Each file in _notes/ becomes a page at /notes/<file-name>/.
+# A translation has the same file name in _notes/<code>/ and appears at /<code>/notes/<file-name>/.
 collections:
   notes:
     output: true
     permalink: /notes/:name/
 
 defaults:
+  - scope: { path: "" }
+    values: { lang: en }
   - scope: { path: "", type: notes }
-    values: { layout: note }
+    values: { layout: note, lang: en }
+  # one pair of entries per extra language
+  - scope: { path: "ja" }
+    values: { lang: ja }
+  - scope: { path: "_notes/ja", type: notes }
+    values: { lang: ja, permalink: "/ja/notes/:name/" }
 
 future: true          # show notes even if their date is ahead of the server clock
 

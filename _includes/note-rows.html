@@ -1,13 +1,11 @@
-{%- comment -%} Rows for a list of notes. Pass notes=..., numbered by date order. {%- endcomment -%}
-{%- assign by_date = site.notes | sort: "date" -%}
+{%- comment -%} Rows for a list of notes (include notes=...). Run lang.html first. {%- endcomment -%}
 <ul class="rows">
   {%- for n in include.notes -%}
-  {%- for m in by_date -%}{%- if m.url == n.url -%}{%- assign num = forloop.index -%}{%- endif -%}{%- endfor -%}
   <li class="row" data-reveal>
-    <a href="{{ n.url | relative_url }}">
-      <span class="mono">{% if num < 10 %}0{% endif %}{{ num }}</span>
+    <a href="{{ n.url | relative_url }}"{% if n.lang != lang %} hreflang="{{ n.lang }}"{% endif %}>
+      <span class="mono">{% include note-num.html note=n %}</span>
       <span class="t" data-decode>{{ n.title }}</span>
-      <span class="mono tag">{{ n.subject | default: "Note" }}</span>
+      <span class="mono tag">{{ n.subject | default: t.note }}{% if n.lang != lang %} <span class="amber">· {{ site.data.i18n[n.lang].short }}</span>{% endif %}</span>
       <span class="mono when">{{ n.date | date: "%Y.%m" }}</span>
       <span class="mono go">↗</span>
     </a>

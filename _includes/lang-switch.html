@@ -1,0 +1,18 @@
+{%- comment -%}
+  EN / JA links. On a note, each language links to that note's translation,
+  or is greyed out if there is none. On other pages it swaps the /<code>/ prefix.
+{%- endcomment -%}
+{%- if lang == deflang -%}{%- assign bare = page.url -%}{%- else -%}{%- assign bare = page.url | remove_first: home | prepend: "/" -%}{%- endif -%}
+{%- for L in site.languages -%}
+  {%- assign target = nil -%}
+  {%- if page.collection == "notes" -%}
+    {%- for m in site.notes -%}{%- if m.slug == page.slug and m.lang == L -%}{%- assign target = m.url -%}{%- endif -%}{%- endfor -%}
+  {%- elsif L == deflang -%}{%- assign target = bare -%}
+  {%- else -%}{%- assign target = bare | prepend: L | prepend: "/" -%}
+  {%- endif -%}
+  {%- unless forloop.first %}<span class="sep">/</span>{% endunless -%}
+  {%- if L == lang -%}<b aria-current="true" title="{{ site.data.i18n[L].name }}">{{ site.data.i18n[L].short }}</b>
+  {%- elsif target -%}<a href="{{ target | relative_url }}" hreflang="{{ L }}" lang="{{ L }}" title="{{ site.data.i18n[L].name }}">{{ site.data.i18n[L].short }}</a>
+  {%- else -%}<span class="off" title="{{ t.untranslated }}">{{ site.data.i18n[L].short }}</span>
+  {%- endif -%}
+{%- endfor -%}

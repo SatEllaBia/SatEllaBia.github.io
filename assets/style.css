@@ -60,6 +60,17 @@ body::after {
   100% { transform: translate(0, 0); }
 }
 
+/* Japanese: Latin letters keep the site faces, kana and kanji fall through to the JP faces */
+:lang(ja) {
+  --f-serif: "Newsreader", "Shippori Mincho", serif;
+  --f-sans: "IBM Plex Sans", "IBM Plex Sans JP", sans-serif;
+  line-break: strict;
+}
+:lang(ja) .head h2, :lang(ja) .article h1, :lang(ja) .statement { letter-spacing: 0; }
+/* proportional kana in big type, and no fake italics (Japanese has none) */
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3, :lang(ja) .t, :lang(ja) .statement, :lang(ja) .kicker { font-feature-settings: "palt"; }
+:lang(ja) .kicker, :lang(ja) em, :lang(ja) .rule-box, :lang(ja) blockquote { font-style: normal; }
+
 /* ------------------------------------------------------------ primitives */
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); }
 .mono {
@@ -141,6 +152,11 @@ body::after {
 .nav a { color: var(--fg); }
 .nav ul { display: flex; gap: clamp(14px, 3vw, 32px); list-style: none; margin: 0; padding: 0; }
 .nav .home { font: 800 15px/1 var(--f-display); letter-spacing: -0.02em; }
+.nav .langs { display: flex; gap: 0.5em; }
+.nav .langs b { font-weight: 500; }
+.nav .langs a, .nav .langs .sep, .nav .langs .off { opacity: 0.55; }
+.nav .langs a:hover { opacity: 1; }
+.nav .langs .off { text-decoration: line-through; cursor: help; }
 
 /* ------------------------------------------------------------ hero */
 .hero {

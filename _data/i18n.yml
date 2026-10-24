@@ -1,0 +1,46 @@
+# Interface text for each language. To add a language, copy the `ja` block,
+# translate it, and follow "Add a language" in README.md.
+# Keys must stay the same in every block.
+
+en:
+  name: English
+  short: EN
+  description: Study notes on analog electronics.
+  tagline: Notes on circuits, kept where I can find them again.
+  nav_notes: Notes
+  latest: Latest <em>notes</em>
+  all_notes: All notes, by subject ↗
+  about: About
+  statement: "Working notes from learning <em>analog electronics</em>: methods, worked examples, and the mistakes worth remembering."
+  scroll: Scroll
+  notes_title: Notes
+  notes_count: notes
+  note: Note
+  other: Other
+  anki: Anki deck ↓
+  untranslated: Not translated yet
+  source: Source
+  inspired: Glitch style inspired by
+  fonts: ""
+
+ja:
+  name: 日本語
+  short: JA
+  description: アナログ電子回路の学習ノート。
+  tagline: 回路のノート。あとで見つけられる場所に。
+  nav_notes: ノート
+  latest: 最新の<em>ノート</em>
+  all_notes: すべてのノート（分野別） ↗
+  about: このサイトについて
+  statement: <em>アナログ電子回路</em>を学ぶ途中のノート。解き方、数値つきの例題、覚えておきたい間違い。
+  scroll: スクロール
+  notes_title: ノート
+  notes_count: 件
+  note: ノート
+  other: その他
+  anki: Anki デッキ ↓
+  untranslated: まだ翻訳されていません
+  source: ソース
+  inspired: グリッチの表現は次のサイトに着想を得ています：
+  # extra web fonts for this language (loaded only on its pages)
+  fonts: https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;600&family=Shippori+Mincho:wght@400;600&display=swap

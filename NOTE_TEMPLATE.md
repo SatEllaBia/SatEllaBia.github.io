@@ -9,6 +9,8 @@ summary: One or two sentences shown under the title.
 Copy this file to `_notes/rc-filter.md` (the file name becomes the URL:
 `/notes/rc-filter/`), edit, commit, push. GitHub rebuilds the site in about a minute.
 
+For a Japanese version, save a translated copy as `_notes/ja/rc-filter.md` (same file name).
+
 ## Headings start at two hashes
 
 Plain Markdown works: **bold**, *italic*, `code`, lists, tables, links, images
